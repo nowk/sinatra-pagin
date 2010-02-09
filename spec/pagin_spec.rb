@@ -166,7 +166,7 @@ describe 'Sinatra' do
       end
       
       [1, 21, 302, "4", "501", "602"].each do |p|
-        it "should return value of @page if @page is #{p}" do
+        it "should return value of page #{p} in it's integer format" do
           page p
           page.should == p.to_i
         end

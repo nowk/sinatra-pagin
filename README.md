@@ -1,6 +1,9 @@
 Sinatra::Pagin*
 =
+
 **Small utility to process paginated urls without modifying the mapped paths in your Sinatra app**
+
+***
 
 ### Usage, *if you actually want to use this...*
 
@@ -54,16 +57,21 @@ It also supports `.:format` in your path.
     # => path_info == /a/pathed/path.js
     # => page == 45
 
+***
+
 ### TODO
 
 - Maybe gemspec
 - Fix whatever breaks along the way.
 - Whatever else...
 
+***
+
 ### Resources
 
 - [Checked with Integrity][1]
 
+***
 
 ### License
 
