@@ -167,9 +167,20 @@ describe 'Sinatra' do
       
       [1, 21, 302, "4", "501", "602"].each do |p|
         it "should return value of @page if @page is #{p}" do
-          @page = p
-          page.should == p
+          page p
+          page.should == p.to_i
         end
+      end
+      
+      it "should actually work inside the app" do
+        app.get "/get/page/value/if" do
+          "The page is #{page}"
+        end
+        
+        get "/get/page/value/if/page/123"
+        last_response.should be_ok
+        last_response.body.should == "The page is 123"
+        last_request.url.should == "http://example.org/get/page/value/if"
       end
     end
   end
