@@ -66,7 +66,7 @@ describe 'Sinatra' do
   end
   
   describe "with Pagin" do
-    before(:each) do
+    before(:all) do
       MyTestApp.register Sinatra::Pagin
     end
     
@@ -104,28 +104,10 @@ describe 'Sinatra' do
     end
     
     it "should not respond ok to multiple interations of /page/# ex: /page/1/page/2" do
-      # get "/page/1/page/2"
-      # last_response.should_not be_ok
-      # last_response.status.should == 404
-      # last_request.url.should == "http://example.org/page/1"
-      pending <<-NOTE
-        For some reason it iterates the before block for every instance of /page/#
-        
-          /page/1/page/2 
-        
-        before seems to iterate for each instance of this. Cause that to be come
-        
-          /
-          
-        validating the local_path and executing the request. It shouldn't.
-        It should only grab the last instance /page/# leaving us with
-        
-          /page/1
-          
-        the test for our demo app.
-        
-        * This works on the live app, so my testing is probably amiss
-      NOTE
+      get "/page/1/page/2"
+      last_response.should_not be_ok
+      last_response.status.should == 404
+      last_request.url.should == "http://example.org/page/1"
     end
     
     it "should accept a page/0" do
