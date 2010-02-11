@@ -28,5 +28,5 @@ module Sinatra
     end
   end
   
-  register Pagin
+  Sinatra::Application.register Pagin
 end
