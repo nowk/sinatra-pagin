@@ -1,0 +1,9 @@
+=== 0.0.1 / 2010-02-14
+
+* Adding it back in. [Yung Hwa Kwon]
+* Removed Sinatra::Application on register call. [Yung Hwa Kwon]
+* Found the flaw in my test, which kept failing the multiple iterations of /page/#. Oopsy. [Yung Hwa Kwon]
+* A small change to the wording in the test. [Yung Hwa Kwon]
+* Fixed a bug in the helper#page method [Yung Hwa Kwon]
+* Updated the Readme a it. Added MIT License [Yung Hwa Kwon]
+* Initial Build + tests. [Yung Hwa Kwon]

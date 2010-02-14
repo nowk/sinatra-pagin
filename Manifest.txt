@@ -1,0 +1,7 @@
+Gemfile
+README.rdoc
+Rakefile
+lib/sinatra/pagin.rb
+spec/pagin_spec.rb
+spec/spec.opts
+spec/spec_helper.rb
