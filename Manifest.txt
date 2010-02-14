@@ -1,4 +1,6 @@
 Gemfile
+History.txt
+Manifest.txt
 README.rdoc
 Rakefile
 lib/sinatra/pagin.rb
