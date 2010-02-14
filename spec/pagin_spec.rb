@@ -1,6 +1,4 @@
-require File.join(File.dirname(__FILE__), 'spec_helper')
-require 'sinatra'
-require File.join(File.dirname(__FILE__), '..', 'lib', 'sinatra/pagin')
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 class MyTestApp < Sinatra::Base
   set :environment, :test

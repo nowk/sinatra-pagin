@@ -1,13 +1,10 @@
-Sinatra::Pagin*
-=
+= Sinatra::Pagin*
 
-**Small utility to process paginated urls without modifying the mapped paths in your Sinatra app**
+Small utility to process paginated urls without modifying the mapped paths in your Sinatra app
 
-***
+== Usage, _if you actually want to use this..._
 
-### Usage, *if you actually want to use this...*
-
-To install, just grab the git, then require in your [Sinatra][0] app
+To install, just grab the git, then require in your Sinatra (http://www.sinatrarb.com/) app
 
     require 'lib/sinatra/pagin' # or wherever you install this ultimately
 
@@ -35,7 +32,7 @@ Without changing those paths, you can run a paginated url.
     http://example.org/a/pathed/path/page/45
     # => get "/a/pathed/path"
 
-Use the helper method *`page`* to get the provide page number.
+Use the helper method +`page`+ to get the provide page number.
 
     http://example.org/page/2
 
@@ -45,7 +42,7 @@ Use the helper method *`page`* to get the provide page number.
     
     # => hello world, you asked for page 2
     
-*`page`* returns 1 as a default.
++`page`+ returns 1 as a default.
 
 It also supports `.:format` in your path.
 
@@ -57,27 +54,21 @@ It also supports `.:format` in your path.
     # => path_info == /a/pathed/path.js
     # => page == 45
 
-***
-
-### TODO
+=== TODO
 
 - Maybe gemspec
 - Fix whatever breaks along the way.
 - Whatever else...
 
-***
+=== Resources
 
-### Resources
+- Checked with Integrity (http://ci.damncarousel.com/sintra-pagin)
 
-- [Checked with Integrity][1]
-
-***
-
-### License
+== License
 
 The MIT License
 
-Copyright (c) 2010 Yung Hwa Kwon
+Copyright (c) 2010 Yung Hwa Kwon (yung.kwon@nowk.net)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -96,6 +87,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE
-
-[0]: http://www.sinatrarb.com/
-[1]: http://ci.damncarousel.com/sintra-pagin
