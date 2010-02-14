@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'hoe'
 
+Hoe.plugins.delete :rubyforge
 Hoe.plugin :gemcutter
 Hoe.plugin :clean
 Hoe.plugin :git
