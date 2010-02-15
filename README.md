@@ -3,30 +3,28 @@ Sinatra::Pagin*
 
 Small utility to process paginated urls without modifying the mapped paths in your Sinatra app
 
----
+## Overview/Usage:
 
-### FEATURES/PROBLEMS:
 
-* Parses ../page/# off your urls to allow simple route mappings
-* Saves page # for internal use
-
-### SYNOPSIS:
+#### Basics:
 
 Given you have mapped paths as such:
 
     get "/" do
       "hello world"
     end
-    
-    # => "http://example.org/"
+    #=> "http://example.org/"
     
     get "/a/pathed/path" do
       "foo bar"
     end
-    
-    # => "http://example.org/a/pathed/path"
+    #=> "http://example.org/a/pathed/path"
 
-Without changing those paths, you can run a paginated url.
+Without changing those paths, you can run a paginated url. 
+
+    require 'sinatra/pagin
+
+###  
 
     http://example.org/page/2
     # => get "/"
@@ -34,17 +32,38 @@ Without changing those paths, you can run a paginated url.
     http://example.org/a/pathed/path/page/45
     # => get "/a/pathed/path"
 
-Use the helper method `page` to get the provide page number.
+*This is based on "pretty" style urls, page parameters sent in via the query string (.../?page=2) will be processed by Sinatra's usual params.
+
+#### Helpers:
+
+`page` returns the parsed "page" number.
 
     http://example.org/page/2
     
     get "/" do
       "hello world, you asked for page #{page}"
     end
-    
     # => hello world, you asked for page 2
 
 `page` returns 1 as a default.
+
+##  
+
+`href_for_pagin(total_pages, direction => :next)` href builder to build pagin valid hrefs for next & previous links based on the currently requested uri.
+
+- total_pages => Integer (Required)
+- direction => Symbol [:next | :prev] \(Defaults to => :next)
+
+---
+    http://example.org/2009/10/page/2
+    
+    href_for_pagin 4, :next
+    #=> /2009/10/page/3
+    
+    href_for_pagin 4, :next
+    #=> /2009/10/page/3
+
+## Additional notes:
 
 It also supports `.:format` in your path.
 
@@ -56,11 +75,11 @@ It also supports `.:format` in your path.
     # => path_info == /a/pathed/path.js
     # => page == 45
 
-### REQUIREMENTS:
+## Requirements:
 
 * [Sinatra](http://www.sinatrarb.com/)
 
-### INSTALL:
+## Install:
 
 Install the gem:
 
@@ -70,8 +89,7 @@ Require in your app:
 
     require 'sinatra/pagin'
 
----
-### LICENSE:
+## License:
 
 (The MIT License)
 
