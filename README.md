@@ -60,8 +60,8 @@ Without changing those paths, you can run a paginated url.
     href_for_pagin 4, :next
     #=> /2009/10/page/3
     
-    href_for_pagin 4, :next
-    #=> /2009/10/page/3
+    href_for_pagin 4, :prev
+    #=> /2009/10/page/1
 
 ## Additional notes:
 
