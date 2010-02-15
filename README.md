@@ -1,17 +1,16 @@
-= sinatra-pagin
-
-* http://github.com/nowk/sinatra-pagin
-
-== DESCRIPTION:
+Sinatra::Pagin*
+=
 
 Small utility to process paginated urls without modifying the mapped paths in your Sinatra app
 
-== FEATURES/PROBLEMS:
+---
+
+### FEATURES/PROBLEMS:
 
 * Parses ../page/# off your urls to allow simple route mappings
 * Saves page # for internal use
 
-== SYNOPSIS:
+### SYNOPSIS:
 
 Given you have mapped paths as such:
 
@@ -26,7 +25,7 @@ Given you have mapped paths as such:
     end
     
     # => "http://example.org/a/pathed/path"
-    
+
 Without changing those paths, you can run a paginated url.
 
     http://example.org/page/2
@@ -35,7 +34,7 @@ Without changing those paths, you can run a paginated url.
     http://example.org/a/pathed/path/page/45
     # => get "/a/pathed/path"
 
-Use the helper method +page+ to get the provide page number.
+Use the helper method `page` to get the provide page number.
 
     http://example.org/page/2
     
@@ -44,9 +43,8 @@ Use the helper method +page+ to get the provide page number.
     end
     
     # => hello world, you asked for page 2
-    
 
-+page+ returns 1 as a default.
+`page` returns 1 as a default.
 
 It also supports `.:format` in your path.
 
@@ -58,19 +56,22 @@ It also supports `.:format` in your path.
     # => path_info == /a/pathed/path.js
     # => page == 45
 
-== REQUIREMENTS:
+### REQUIREMENTS:
 
-* Sinatra
+* [Sinatra](http://www.sinatrarb.com/)
 
-== INSTALL:
+### INSTALL:
 
 Install the gem:
+
     sudo gem install sinatra-pagin
 
 Require in your app:
+
     require 'sinatra/pagin'
 
-== LICENSE:
+---
+### LICENSE:
 
 (The MIT License)
 
