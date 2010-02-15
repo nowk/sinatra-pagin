@@ -140,7 +140,7 @@ describe 'Sinatra' do
   describe "Helpers" do
     include Sinatra::Pagin::Helpers
     
-    describe "current_page" do
+    describe "page" do
       it "should return 1 if @page.nil?" do
         page.should == 1
       end
@@ -152,15 +152,95 @@ describe 'Sinatra' do
         end
       end
       
-      it "should actually work inside the app" do
-        app.get "/get/page/value/if" do
-          "The page is #{page}"
+      context "within an actual app" do
+        before(:all) do
+          app.get "/get/page/value/if" do
+            "The page is #{page}"
+          end
         end
         
-        get "/get/page/value/if/page/123"
-        last_response.should be_ok
-        last_response.body.should == "The page is 123"
-        last_request.url.should == "http://example.org/get/page/value/if"
+        it "should actually work inside the app" do
+          get "/get/page/value/if/page/123"
+          last_response.should be_ok
+          last_response.body.should == "The page is 123"
+          last_request.url.should == "http://example.org/get/page/value/if"
+        end
+      end
+    end
+    
+    describe "href_for_pagin" do
+      describe "" do
+        before(:each) do
+          stub!(:request)
+          request.stub!(:path_info).and_return '/2009/10'
+        end
+      
+        it "should return a paginated uri based on the current request" do
+          page 2
+        
+          next_page = href_for_pagin(3, :next)
+          prev_page = href_for_pagin(3, :prev)
+        
+          next_page.should == "/2009/10/page/3"
+          prev_page.should == "/2009/10/page/1"
+        end
+      
+        it "should return ../page/1 for :prev if page is 1" do
+          page 1
+          href_for_pagin(3, :prev).should == "/2009/10/page/1"
+        end
+      
+        it "should return ../page/*total_pages for :next if page is the last page" do
+          page 3
+          href_for_pagin(3, :next).should == "/2009/10/page/3"
+        end
+      end
+      
+      context "within an actual app" do
+        before(:all) do
+          app.get "/this/path/should/be/base" do
+            total_pages = 4
+            <<-HTML
+              <a href="#{href_for_pagin(total_pages, :prev)}">previous</a> |
+              <a href="#{href_for_pagin(total_pages, :next)}">next</a>
+            HTML
+          end
+        end
+        
+        it "should return the proper hrefs given ../page/1" do
+          get "/this/path/should/be/base/page/1"
+          last_response.should be_ok
+          last_response.should have_selector 'a', :href => "/this/path/should/be/base/page/1" do |a|
+            a.inner_text.should == 'previous'
+          end
+          last_response.should have_selector 'a', :href => "/this/path/should/be/base/page/2" do |a|
+            a.inner_text.should == 'next'
+          end
+        end
+        
+        [2, 3].each do |p|
+          it "should return the proper hrefs given ../page/#{p}" do
+            get "/this/path/should/be/base/page/#{p}"
+            last_response.should be_ok
+            last_response.should have_selector 'a', :href => "/this/path/should/be/base/page/#{p-1}" do |a|
+              a.inner_text.should == 'previous'
+            end
+            last_response.should have_selector 'a', :href => "/this/path/should/be/base/page/#{p+1}" do |a|
+              a.inner_text.should == 'next'
+            end
+          end
+        end
+        
+        it "should return the proper hrefs given ../page/4" do
+          get "/this/path/should/be/base/page/4"
+          last_response.should be_ok
+          last_response.should have_selector 'a', :href => "/this/path/should/be/base/page/3" do |a|
+            a.inner_text.should == 'previous'
+          end
+          last_response.should have_selector 'a', :href => "/this/path/should/be/base/page/4" do |a|
+            a.inner_text.should == 'next'
+          end
+        end
       end
     end
   end

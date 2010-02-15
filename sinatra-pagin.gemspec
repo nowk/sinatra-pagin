@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/sinatra/pagin.rb",
+     "sinatra-pagin.gemspec",
      "spec/pagin_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
