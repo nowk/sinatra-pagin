@@ -89,6 +89,10 @@ Require in your app:
 
     require 'sinatra/pagin'
 
+## Integrity
+
+[Checked by Integrity](http://ci.damncarousel.com)
+
 ## License:
 
 (The MIT License)
