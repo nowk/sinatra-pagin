@@ -23,6 +23,7 @@ Given you have mapped paths as such:
 Without changing those paths, you can run a paginated url. 
 
     require 'sinatra/pagin
+    Sinatra::Application.register Sinatra::Pagin
 
 ###  
 
@@ -85,9 +86,11 @@ Install the gem:
 
     sudo gem install sinatra-pagin
 
-Require in your app:
+Require & Register in your app:
 
     require 'sinatra/pagin'
+
+    Sinatra::Application.register Sinatra::Pagin
 
 ## Integrity
 

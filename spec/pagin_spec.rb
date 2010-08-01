@@ -194,6 +194,11 @@ describe 'Sinatra' do
           page 3
           href_for_pagin(3, :next).should == "/2009/10/page/3"
         end
+
+        it "allows for the base path to be overridden" do
+          page 2
+          href_for_pagin(3, :next, '/base/path').should == '/base/path/page/3'
+        end
       end
       
       context "within an actual app" do

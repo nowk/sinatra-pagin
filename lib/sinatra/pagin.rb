@@ -26,8 +26,12 @@ module Sinatra
         @page || 1
       end
       
-      def href_for_pagin(total_pages, direction = :next)
-        path_info = request.path_info.gsub(/\/$/, '') # clear off the last slash just in case
+      def href_for_pagin(total_pages, direction = :next, override = nil)
+        if override.nil?
+          path_info = request.path_info.gsub(/\/$/, '') # clear off the last slash just in case
+        else
+          path_info = override
+        end
         page_num  = 1
         
         case
@@ -41,6 +45,4 @@ module Sinatra
       end
     end
   end
-  
-  Sinatra::Application.register Pagin
 end
